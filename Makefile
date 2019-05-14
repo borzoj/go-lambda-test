@@ -5,6 +5,9 @@ build:
 clean:
 	rm -rf ./bin
 
+run:
+	go run "./cmd/main.go"
+
 .PHONY: deploy
 deploy: clean build
 	serverless deploy --verbose

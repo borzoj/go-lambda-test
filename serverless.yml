@@ -17,5 +17,11 @@ functions:
       - http:
           path: /foo
           method: get
+      - http:
+          path: /ask
+          method: post
+      - http:
+          path: /weather/{city}
+          method: get
     environment:
       GIN_MODE: release
