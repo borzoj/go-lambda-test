@@ -1,0 +1,21 @@
+service: go-lambda-test
+
+provider:
+  name: aws
+  runtime: go1.x
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+
+functions:
+  handler:
+    handler: bin/handler
+    events:
+      - http:
+          path: /foo
+          method: get
+    environment:
+      GIN_MODE: release
