@@ -2,6 +2,7 @@ package weather
 
 import (
 	"encoding/json"
+	"errors"
 	"log"
 
 	"github.com/borzoj/go-lambda-test/pkg/http"
@@ -9,7 +10,8 @@ import (
 
 // Service weather api service
 type Service struct {
-	client *http.Client
+	client http.Client
+	appID  string
 }
 
 // Weather description
@@ -24,15 +26,28 @@ type Response struct {
 }
 
 // NewService return a new servide
-func NewService(client *http.Client) (*Service, error) {
-	return &Service{client: client}, nil
+func NewService(client http.Client) (Service, error) {
+	return Service{client: client}, nil
+}
+
+//AppID set app id for authenticating requests
+func (service *Service) AppID(appID string) {
+	service.appID = appID
+}
+
+// BaseURL set base url for request
+func (service *Service) BaseURL(baseURL string) {
+	service.client.BaseURL(baseURL)
 }
 
 // Get weather for a city
 func (service *Service) Get(city string) (Response, error) {
 	var response Response
+	if service.appID == "" {
+		return response, errors.New("App ID not set")
+	}
 	params := map[string]string{
-		"APPID": "50819be5818fbd89e2833c786d0a503e",
+		"APPID": service.appID,
 		"q":     city,
 	}
 	body, err := service.client.Get("weather", params)

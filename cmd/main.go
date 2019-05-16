@@ -30,7 +30,9 @@ func ask(c *gin.Context) {
 
 func weather(c *gin.Context) {
 	log.Println("weather")
-	service, _ := CreateWeatherService("http://api.openweathermap.org/data/2.5/")
+	service, _ := CreateWeatherService()
+	service.BaseURL("http://api.openweathermap.org/data/2.5/")
+	service.AppID("50819be5818fbd89e2833c786d0a503e")
 	city := c.Param("city")
 	response, err := service.Get(city)
 	if err != nil {

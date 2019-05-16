@@ -12,14 +12,14 @@ import (
 
 // Injectors from wire.go:
 
-func CreateWeatherService(baseUrl string) (*weather2.Service, error) {
-	client, err := http.NewClient(baseUrl)
+func CreateWeatherService() (weather2.Service, error) {
+	client, err := http.NewClient()
 	if err != nil {
-		return nil, err
+		return weather2.Service{}, err
 	}
 	service, err := weather2.NewService(client)
 	if err != nil {
-		return nil, err
+		return weather2.Service{}, err
 	}
 	return service, nil
 }

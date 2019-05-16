@@ -7,8 +7,8 @@ Uses:
 1. [gin framework](https://github.com/gin-gonic/gin) for request handling
 2. [apex gateway](https://github.com/apex/gateway) to serve the same code as Lambda and local HTTP
 3. [serverless framework](https://serverless.com/) for nicer Lambda definitions and extra functionality
+4. [wire](https://github.com/google/wire) for dependency injection
 
-Based on https://stevenwhite.com/go-and-lambda/
 
 ## Requirements:
 
@@ -51,6 +51,7 @@ Sample POST request. Post body:
 
 ## Further development
 
+1. Dockerize to simplify setup of dependencies
 1. Add tests
-1. Add dependency injection to make it more testable
-1. Add configuration injection - for example API key is hardcoded now
+1. Mocking library for tests
+1. Logging library for structured logs

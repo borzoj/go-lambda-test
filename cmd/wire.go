@@ -8,10 +8,10 @@ import (
 	"github.com/google/wire"
 )
 
-func CreateWeatherService(baseUrl string) (*weatherService.Service, error) {
+func CreateWeatherService() (weatherService.Service, error) {
 	wire.Build(
 		httpClient.NewClient,
 		weatherService.NewService,
 	)
-	return &weatherService.Service{}, nil
+	return weatherService.Service{}, nil
 }
