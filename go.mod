@@ -9,6 +9,7 @@ require (
 	github.com/cpuguy83/go-md2man v1.0.10 // indirect
 	github.com/gin-gonic/gin v1.4.0
 	github.com/go-delve/delve v1.2.0 // indirect
+	github.com/google/wire v0.2.2
 	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/mattn/go-runewidth v0.0.4 // indirect

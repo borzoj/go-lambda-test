@@ -11,8 +11,8 @@ type Client struct {
 }
 
 // NewClient create a new client
-func NewClient(baseURL string) (Client, error) {
-	client := Client{baseURL: baseURL}
+func NewClient(baseURL string) (*Client, error) {
+	client := &Client{baseURL: baseURL}
 	return client, nil
 }
 

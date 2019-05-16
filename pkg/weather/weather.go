@@ -9,7 +9,7 @@ import (
 
 // Service weather api service
 type Service struct {
-	client http.Client
+	client *http.Client
 }
 
 // Weather description
@@ -24,8 +24,8 @@ type Response struct {
 }
 
 // NewService return a new servide
-func NewService(client http.Client) (Service, error) {
-	return Service{client: client}, nil
+func NewService(client *http.Client) (*Service, error) {
+	return &Service{client: client}, nil
 }
 
 // Get weather for a city
