@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/apex/gateway"
+	httpClient "github.com/borzoj/go-lambda-test/pkg/http"
 	"github.com/borzoj/go-lambda-test/pkg/qna"
 	weatherService "github.com/borzoj/go-lambda-test/pkg/weather"
 	"github.com/gin-gonic/gin"
@@ -31,8 +32,10 @@ func ask(c *gin.Context) {
 
 func weather(c *gin.Context) {
 	log.Println("weather")
+	client, _ := httpClient.NewClient("http://api.openweathermap.org/data/2.5/")
+	service, _ := weatherService.NewService(client)
 	city := c.Param("city")
-	response, err := weatherService.Get(city)
+	response, err := service.Get(city)
 	if err != nil {
 		log.Println(err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false})
