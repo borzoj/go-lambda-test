@@ -1,12 +1,12 @@
 build:
-	env GOOS=linux go build -ldflags="-s -w" -o bin/handler cmd/main.go
+	env GOOS=linux go build -ldflags="-s -w" -o bin/handler ./cmd
 
 .PHONY: clean
 clean:
 	rm -rf ./bin
 
 run:
-	go run "./cmd/main.go"
+	go run ./cmd
 
 .PHONY: deploy
 deploy: clean build
